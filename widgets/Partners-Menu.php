@@ -1,16 +1,6 @@
 <?php
 /**
- * Widget API: WP_Nav_Menu_Widget class
- *
- * @package WordPress
- * @subpackage Widgets
- * @since 4.4.0
- */
-
-/**
- * Core class used to implement the Custom Menu widget.
- *
- * @since 3.0.0
+ * Based on the Worpress Custom Menu
  *
  * @see WP_Widget
  */
@@ -43,6 +33,8 @@ class partners_nav_menu extends WP_Widget {
 	public function widget( $args, $instance ) {
 		// Get menu
 		$nav_menu = ! empty( $instance['nav_menu'] ) ? wp_get_nav_menu_object( $instance['nav_menu'] ) : false;
+		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? __( 'Default title', 'text_domain' ) : $instance['title'] );
+
 
 		if ( !$nav_menu )
 			return;
@@ -50,16 +42,25 @@ class partners_nav_menu extends WP_Widget {
 		/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 		$instance['title'] = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
-		echo $args['before_widget'];
-
+		//echo $args['before_widget']; 
+		?> <div class="flex flex--justified flex--bordered">
+                  <h2><?php echo $title;?> </h2><a href="" class="discover">View All</a>
+                </div>
+                
+         <?       
 		if ( !empty($instance['title']) )
 			echo $args['before_title'] . $instance['title'] . $args['after_title'];
 
 		$nav_menu_args = array(
-			'fallback_cb' => '',
+			'fallback_cb' => '','items_wrap'  => '<ul id="" class="styled-list divided-list condensed-list" >%3$s</ul>','link_before'=> '<svg class="symbol symbol-arrow-right">
+                          <use xlink:href="#arrow-right"></use>
+                        </svg><span>',
+                        'link_after'=> '<span>',
 			'menu'        => $nav_menu
 		);
+?>
 
+                <?
 		/**
 		 * Filters the arguments for the Custom Menu widget.
 		 *
@@ -78,7 +79,7 @@ class partners_nav_menu extends WP_Widget {
 		 */
 		wp_nav_menu( apply_filters( 'widget_nav_menu_args', $nav_menu_args, $nav_menu, $args, $instance ) );
 
-		echo $args['after_widget'];
+		//echo $args['after_widget'];
 	}
 
 	/**

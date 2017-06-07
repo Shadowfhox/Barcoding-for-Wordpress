@@ -74,7 +74,7 @@ public function scripts()
 	public function form( $instance ) {
 
    $title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'New title', 'text_domain' );
-   $image = ! empty( $instance['image'] ) ? $instance['image'] : __( './assets/images/table.jpg', 'text_domain' );
+   $image = ! empty( $instance['image'] ) ? $instance['image'] : __( './assets/images/table.jpg-', 'text_domain' );
    $subtitle = ! empty( $instance['subtitle'] ) ? $instance['subtitle'] : __( 'Sub title', 'text_domain' );
    $artcontent =  ! empty( $instance['artcontent']  ) ? $instance['artcontent'] :  __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae ligula dolor.', 'text_domain' );
    $link = ! empty( $instance['link'] ) ? $instance['link'] : '';

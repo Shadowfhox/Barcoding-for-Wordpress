@@ -10,7 +10,7 @@
             <div class="compartment">
               <h1 class="hero__title">About Us</h1>
             </div>
-            <img src="./assets/images/interior.jpg" alt="undefined">
+            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/interior.jpg" alt="undefined">
           </div>
           <div class="section">
             <div class="compartment">
@@ -43,21 +43,23 @@
           </div>
           <?php dynamic_sidebar( 'About Us: Banner Content' ); ?>    
           <div class="section">
-                      <div class="compartment">
-
-          <?php if ( is_dynamic_sidebar( 'About Us: Location Content' ) ) { ?>
+            <div class="compartment">
+              <?php if ( is_dynamic_sidebar( 'About Us: Location Content' ) ) { ?>
                     
                       <h2>Our Location</h2>
                 <div class="grid grid--40">
 
-                <?php dynamic_sidebar( 'About Us: Location Content' ); ?>
-                      
-                  <?php } ?>  
-</div>
+                  <?php dynamic_sidebar( 'About Us: Location Content' ); ?>   
 
-                  </div>
-                    </div>  
-            
+                </div>
+
+                <?php } ?>
+
+                <?php dynamic_sidebar( 'About Us: Bottom 1 Content' ); ?> 
+
+            </div>
+          </div>  
+            <?php dynamic_sidebar( 'About Us: Bottom 2 Content' ); ?> 
         </div>
       </div>
     </div>

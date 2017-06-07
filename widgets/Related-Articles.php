@@ -10,7 +10,7 @@ class related_articles extends WP_Widget {
 ------------------------------------------------ */
 
      function __construct() {
-	 parent::__construct( 'related_articles',   __( 'Related Articles for different Pages', 'text_domain' ),  array( 'description' => __( 'Related Articles Showcase for different Barcoding Pages', 'text_domain' ), ) 
+	 parent::__construct( 'related_articles',   __( 'Related Posts for different Pages', 'text_domain' ),  array( 'description' => __( 'Related Posts Showcase for different Barcoding Pages', 'text_domain' ), ) 
    );
 	}
 

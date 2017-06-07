@@ -1,5 +1,5 @@
 <?php
-/** Widget based on Single Post Widget By LibraFire https://rhg.wordpress.org/plugins/single-post-sidebar-widget/ */
+
 
 
 class resource_search extends WP_Widget {
@@ -120,9 +120,9 @@ $v_args = array(
         's'             =>  $_name, // looks into everything with the keyword from your 'name field'
         'meta_query'    =>  array(
                                 array(
-                                    'key'     => 'car_model', // assumed your meta_key is 'car_model'
+                                    'key'     => 'car_model', // 
                                     'value'   => $_model,
-                                    'compare' => 'LIKE', // finds models that matches 'model' from the select field
+                                    'compare' => 'LIKE', // 
                                 ),
                             )
     );
@@ -134,7 +134,7 @@ $vehicleSearchQuery = new WP_Query( $v_args );
 // Show the results
 if( $vehicleSearchQuery->have_posts() ) :
     while( $vehicleSearchQuery->have_posts() ) : $vehicleSearchQuery->the_post();
-        the_title(); // Assumed your cars' names are stored as a CPT post title
+        the_title(); // 
     endwhile;
 else :
     _e( '<div class="filter__extras">

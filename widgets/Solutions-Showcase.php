@@ -16,7 +16,7 @@ public function scripts()
 
     add_action('admin_enqueue_scripts', array($this, 'scripts'));
 
-    parent::__construct( 'solutions_showcase',   __( 'Article Showcase for Solutions Page', 'text_domain' ),  array( 'description' => __( 'Article Showcase for Solutions Page', 'text_domain' ), ) 
+    parent::__construct( 'solutions_showcase',   __( 'Post Showcase for Solutions Page', 'text_domain' ),  array( 'description' => __( 'Post Showcase for Solutions Page', 'text_domain' ), ) 
    );
 
 }
@@ -52,12 +52,12 @@ if($loop->have_posts()) : ?>
             <use xlink:href="#chevron-down"></use>
             </svg>
          </h5>
-         <figure><img src="<?php echo esc_url($image); ?>" alt=""></figure>
+         <figure><img src="<?php echo $image; ?>" alt=""></figure>
       </header>
       <article role="tabpanel" class="silk-harmonica__content"> 
          <h2><?php the_title();?></h2>
          <h3><?php echo $artheader; ?></h3>
-         <p><?php the_content(); ?><a href="" class="button button--mini">Share</a>
+         <p><?php the_content(); ?></p><a href="" class="button button--mini">Share</a>
          <div class="solution__footer">
             <h4><a href="">
                <svg class="symbol symbol-plane">

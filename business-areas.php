@@ -11,7 +11,7 @@
                 <div class="compartment">
                   <h1 class="hero__title">Business Areas</h1>
                 </div>
-                <img src="./assets/images/interior.jpg" alt="undefined">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/interior.jpg" alt="undefined">
               </div>
               <div class="section">
                 <div class="compartment">

@@ -58,6 +58,13 @@ function svg_social_menu_icons( $item_output, $item, $depth, $args ) {
 			}
 		}
 	}
+	if ( 'sidebar-menu' == $args->theme_location ) {
+		foreach ( $svg_icons as $attr => $value ) {
+			if ( false !== strpos( $item->title, $attr ) ) {
+				$item_output = str_replace( $args->link_before, '<span class="bottle"><svg class="symbol symbol-' . esc_attr( $value ) . '"><use xlink:href="#' . esc_attr( $value ) . '"></use></svg></span><span class="visible-for-screen-readers">', $item_output );
+			}
+		}
+	}
 
 	return $item_output;
 }
@@ -102,14 +109,9 @@ function cc_mime_types($mimes) {
   return $mimes;
 }
 
-
-
 add_filter('upload_mimes', 'cc_mime_types');
 
-
-
 /* Add arrow icon to sidebar menu first child 
-
 
 function add_specific_menu_location_atts( $atts, $item, $args ) {
 
@@ -157,6 +159,35 @@ class my_extended_walker extends Walker_Nav_Menu {
 /* Register Sidebar/Positions for Widgets*/
 
 if ( function_exists('register_sidebar') ){
+	/* Home Page  horizontal sidebar 1: Shows About Us Content*/
+	register_sidebar(array( 
+		'name' => 'Home: Spotlight',	
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<!--',
+		'after_title' => '-->',  
+	));
+
+/* HomE Page  horizontal sidebar 2: Shows About Us Content*/
+	register_sidebar(array( 
+		'name' => 'Home: Halfway',	
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<!--',
+		'after_title' => '-->',  
+	));
+
+
+/* Home Page  horizontal sidebar 3: Shows About Us Content*/
+	register_sidebar(array( 
+		'name' => 'Home: Bottom',	
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<!--',
+		'after_title' => '-->',  
+	));	
+
+
 
 	/* Solutions Page  horizontal sidebar 1: Shows Posts Showcase*/
 	register_sidebar(array( 	
@@ -222,7 +253,7 @@ if ( function_exists('register_sidebar') ){
 		'after_title' => '-->',  
 	));
 
-	/* About Us Page  horizontal sidebar 1: Shows About Us Content*/
+	/* About Us Page  horizontal sidebar 2: Shows About Us Content*/
 	register_sidebar(array( 
 		'name' => 'About Us: Location Content',	
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -231,15 +262,25 @@ if ( function_exists('register_sidebar') ){
 		'after_title' => '-->',  
 	));
 
-/* Solutions Page  horizontal sidebar 2: Shows Related Article Block Widgets*/
+	/* About Us Page  horizontal sidebar 3: Shows About Us Content*/
+	register_sidebar(array( 
+		'name' => 'About Us: Bottom 1 Content',	
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<!--',
+		'after_title' => '-->',  
+	));
+	/* About Us Page  horizontal sidebar 4: Shows About Us Content*/
+	register_sidebar(array( 
+		'name' => 'About Us: Bottom 2 Content',	
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<!--',
+		'after_title' => '-->',  
+	));
 
-	register_sidebar(array( 'name' => 'Business-1'));
-	register_sidebar(array( 'name' => 'Resources-Location'));
-	register_sidebar(array( 'name' => 'Resources-Location'));
-
+	
 }
-
-
 
 remove_filter( 'the_content', 'wpautop' );
 
@@ -255,3 +296,6 @@ require('widgets/Home-Spotlight.php');
 require('widgets/Home-Slide.php');
 require('widgets/Partners-Logos.php');
 require('widgets/Single-Image-Display.php');
+require('widgets/Custom-Button.php');
+require('widgets/Custom-Quote.php');
+require('widgets/Social-Feed.php');

@@ -18,7 +18,7 @@
 
                   <h1 class="hero__title">Solutions</h1>
 
-                </div><img src="./assets/images/interior.jpg" alt="undefined">
+                </div><img src="<?php echo get_template_directory_uri(); ?>/assets/images/interior.jpg" alt="undefined">
 
               </div>
 
@@ -45,7 +45,6 @@
                   </nav>
 
                 </div>
-
     
 <?php
     // TO SHOW THE PAGE CONTENTS
@@ -64,8 +63,6 @@
                   <?php endif; ?>
 
                 </div>
-
-
                 
 
                 <div class="flag">
@@ -74,16 +71,7 @@
 
                 <div class="grid">
                   <?php dynamic_sidebar( 'Solutions: Related Posts Bar' ); ?>
-
-                </div>
-                  
-
-
-               
-
-                
-
-                
+                </div>        
 
               </div>
 
@@ -95,9 +83,7 @@
 
       </div>
 
-    </main>
-
-  
+    </main>  
 
   <?php get_footer(); ?>
 

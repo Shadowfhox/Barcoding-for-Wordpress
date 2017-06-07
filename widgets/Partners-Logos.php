@@ -10,7 +10,7 @@ class partner_logo extends WP_Widget {
 ------------------------------------------------ */
 
      function __construct() {
-	 parent::__construct( 'partner_logo',   __( 'Home Partners Logo Display', 'text_domain' ),  array( 'description' => __( 'Display Maps and location description for the About us Page', 'text_domain' ), ) 
+	 parent::__construct( 'partner_logo',   __( 'Home Partners Logo Display', 'text_domain' ),  array( 'description' => __( 'Display Images or Logos', 'text_domain' ), ) 
    );
 	}
 
@@ -20,58 +20,32 @@ class partner_logo extends WP_Widget {
 	
 	function widget( $args, $instance ) {
 		extract( $args );
-		$bck_color = empty($instance['bck_color']) ? '' : $instance['bck_color'];
+		$desc = empty($instance['desc']) ? '' : $instance['desc'];
+		$img1 = empty($instance['img1']) ? '' : $instance['img1'];
+		$img2 = empty($instance['img2']) ? '' : $instance['img2'];
+		$img3 = empty($instance['img3']) ? '' : $instance['img3'];
+		$img4 = empty($instance['img4']) ? '' : $instance['img4'];
+		$img5 = empty($instance['img5']) ? '' : $instance['img5'];
 		//echo $before_widget;
-		 global $post; 
-			
-			$args = array(
-					'post_type'=> 'post',
-					'p' => $instance['selected_post']
-				);
-
-			$loop = new WP_Query($args);
-
-			if($loop->have_posts()) : ?>
-					<?php while($loop->have_posts()) : 
-					$loop->the_post(); ?>
+		 ?>
 
 
 				
 					
 					
-				<ul class="swift-slide product-slide halfway-section">
-        <li class="hero product">
-          <div class="compartment">
-            <div class="product__details">
-              <h2 class="larger">Slide 1</h2>
-              <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo.</p><a href="" class="button">Read More</a>
-            </div>
-          </div><img src="./assets/images/honeywell.jpg" alt="undefined">
-        </li>
-        <li class="hero product">
-          <div class="compartment">
-            <div class="product__details">
-              <h2 class="larger">Slide 2</h2>
-              <p>Maecenas faucibus mollis interdum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p><a href="" class="button">Read More</a>
-            </div>
-          </div><img src="./assets/images/honeywell.jpg" alt="undefined">
-        </li>
-        <li class="hero product">
-          <div class="compartment">
-            <div class="product__details">
-              <h2 class="larger">Slide 3</h2>
-              <p>Maecenas sed diam eget risus varius blandit sit amet non magna. Nullam id dolor id nibh ultricies vehicula ut id elit.</p><a href="" class="button">Read More</a>
-            </div>
-          </div><img src="./assets/images/honeywell.jpg" alt="undefined">
-        </li>
-      </ul>
+		<ul class="partners">
+          <li class="partners__title">
+            <h2 class="stay"><?php echo $desc; ?></h2>
+          </li>
+          <li class="partners__item"><a href=""><img src="<?php echo $img1; ?>" alt="undefined"></a></li>
+          <li class="partners__item"><a href=""><img src="<?php echo $img2; ?>" alt="undefined"></a></li>
+          <li class="partners__item"><a href=""><img src="<?php echo $img3; ?>" alt="undefined"></a></li>
+          <li class="partners__item"><a href=""><img src="<?php echo $img4; ?>" alt="undefined"></a></li>
+          <li class="partners__item"><a href=""><img src="<?php echo $img5; ?>" alt="undefined"></a></li>
+        </ul>
 
 				
-			<?php endwhile; else : ?>
-
-				<p><?php _e('<h4>No post selected yet </h4>','related_articles'); ?></p>
-			
-			<?php endif;
+			<?php 
 		
 		//echo $after_widget;
 	}	
@@ -83,11 +57,12 @@ class partner_logo extends WP_Widget {
 	
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
-		$instance['selected_post'] = ( ! empty( $new_instance['selected_post'] ) ) ? strip_tags( $new_instance['selected_post'] ) : '';
-		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-		$instance['thumbnail'] = ( ! empty( $new_instance['thumbnail'] ) ) ? strip_tags( $new_instance['thumbnail'] ) : '';
-		$instance['excerpt'] = ( ! empty( $new_instance['excerpt'] ) ) ? strip_tags( $new_instance['excerpt'] ) : '';
-		$instance['bck_color'] = $new_instance['bck_color'];
+		$instance['desc'] = ( ! empty( $new_instance['desc'] ) ) ? strip_tags( $new_instance['desc'] ) : '';
+		$instance['img1'] = $new_instance['img1'];
+		$instance['img2'] = $new_instance['img2'];
+		$instance['img3'] = $new_instance['img3'];
+		$instance['img4'] = $new_instance['img4'];
+		$instance['img5'] = $new_instance['img5'];
 		return $instance;
 	}
 	
@@ -97,45 +72,73 @@ class partner_logo extends WP_Widget {
 ------------------------------------------------ */
 	 
 	function form( $instance ) { 
-		$bck_color = $instance['bck_color']; 
-		$defaults = array(
-		'selected_post' => '0',		
-				
-		);
-		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'selected_post' ); ?>"><?php _e('Select your post:', 'related_articles'); ?></label>
-			<select style="width: 100%;" id='<?php echo $this->get_field_id( 'selected_post' ); ?>' name="<?php echo $this->get_field_name( 'selected_post' ); ?>" >
-				<?php $args=array(
-						'post_type' => 'post',
-						'posts_per_page' => -1
-				);
-				$wp_query = new WP_Query($args);
-				if($wp_query->have_posts()):
-						while($wp_query->have_posts()):$wp_query->the_post();
-								?>
-								<option value="<?php echo get_the_ID();?>" <?php echo ($instance['selected_post']==get_the_ID())?'selected':''; ?>><?php the_title();?></option>
-								<?php
-						endwhile;
-				endif;?>
-			</select>
-		</p>
+		$desc = $instance['desc']; 
+		$img1 = $instance['img1']; 
+		$img2 = $instance['img2'];
+		$img3 = $instance['img3'];
+		$img4 = $instance['img4'];
+		$img5 = $instance['img5'];
+		?>
+	<h1>Title</h1>
+<label for="<?php echo $this->get_field_id( 'desc' ); ?>"><?php _e( 'Title or Description:' ); ?></label>
 
-		<select class='widefat' id="<?php echo $this->get_field_id('bck_color'); ?>"
-                name="<?php echo $this->get_field_name('bck_color'); ?>" type="text">
-          <option value='orange'<?php echo ($bck_color=='orange')?'selected':''; ?>>
-            Orange
-          </option>
-          <option value='blue'<?php echo ($bck_color=='blue')?'selected':''; ?>>
-            Blue
-          </option> 
-          <option value='gray'<?php echo ($bck_color=='gray')?'selected':''; ?>>
-            Gray
-          </option> 
-          <option value='dark-blue'<?php echo ($bck_color=='dark-blue')?'selected':''; ?>>
-            Dark Blue
-          </option> 
-        </select>   
+      <input class="widefat" id="<?php echo $this->get_field_id( 'desc' ); ?>" name="<?php echo $this->get_field_name( 'desc' ); ?>" type="text" value="<?php echo  $desc ; ?>" />
+		<hr>
+   <h1>Logo 1</h1>
+
+	<p>
+      
+      <label for="<?php echo $this->get_field_id( 'img1' ); ?>"><?php _e( 'Image:' ); ?></label>
+
+      <input class="widefat" id="<?php echo $this->get_field_id( 'img1' ); ?>" name="<?php echo $this->get_field_name( 'img1' ); ?>" type="text" value="<?php echo  $img1 ; ?>" />
+
+      <button class="upload_image_button button button-primary">Upload Image</button>
+
+   </p>
+<hr>
+   <h1>Logo 2</h1> 
+   <p>
+      
+      <label for="<?php echo $this->get_field_id( 'img2' ); ?>"><?php _e( 'Image:' ); ?></label>
+
+      <input class="widefat" id="<?php echo $this->get_field_id( 'img2' ); ?>" name="<?php echo $this->get_field_name( 'img2' ); ?>" type="text" value="<?php echo  $img2 ; ?>" />
+
+      <button class="upload_image_button button button-primary">Upload Image</button>
+
+   </p>
+   <hr>
+   <h1>Logo 3</h1> 
+   <p>
+      
+      <label for="<?php echo $this->get_field_id( 'img3' ); ?>"><?php _e( 'Image:' ); ?></label>
+
+      <input class="widefat" id="<?php echo $this->get_field_id( 'img3' ); ?>" name="<?php echo $this->get_field_name( 'img3' ); ?>" type="text" value="<?php echo  $img3 ; ?>" />
+
+      <button class="upload_image_button button button-primary">Upload Image</button>
+
+   </p>
+   <hr>
+   <h1>Logo 4</h1> 
+   <p>
+      
+      <label for="<?php echo $this->get_field_id( 'img4' ); ?>"><?php _e( 'Image:' ); ?></label>
+
+      <input class="widefat" id="<?php echo $this->get_field_id( 'img4' ); ?>" name="<?php echo $this->get_field_name( 'img4' ); ?>" type="text" value="<?php echo  $img4 ; ?>" />
+
+      <button class="upload_image_button button button-primary">Upload Image</button>
+
+   </p>
+   <hr>
+   <h1>Logo 5</h1> 
+   <p>
+      
+      <label for="<?php echo $this->get_field_id( 'img5' ); ?>"><?php _e( 'Image:' ); ?></label>
+
+      <input class="widefat" id="<?php echo $this->get_field_id( 'img1' ); ?>" name="<?php echo $this->get_field_name( 'img5' ); ?>" type="text" value="<?php echo  $img5 ; ?>" />
+
+      <button class="upload_image_button button button-primary">Upload Image</button>
+
+   </p>
 		
 	<?php
 	}	
