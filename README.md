@@ -8,7 +8,7 @@ The Widgets although created for specific pages can be used through out the whol
 
 In its entirely the theme includes:
 * 17 Widgets that allow editing and help adapating each page to the user needs.
-* 8 custom menus and 1 custom category posts display menu
+* 8 custom menus and 1 custom category posts display menu.
 * svg icon support for  3 menus, but this functionality can be expanded if needed.
 * Templates for single post display, archive,  and comments.
 * Licensed under GPLv2 or later.
