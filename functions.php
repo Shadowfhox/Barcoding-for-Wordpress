@@ -159,33 +159,7 @@ class my_extended_walker extends Walker_Nav_Menu {
 /* Register Sidebar/Positions for Widgets*/
 
 if ( function_exists('register_sidebar') ){
-	/* Home Page  horizontal sidebar 1: Shows About Us Content*/
-	register_sidebar(array( 
-		'name' => 'Home: Spotlight',	
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<!--',
-		'after_title' => '-->',  
-	));
-
-/* HomE Page  horizontal sidebar 2: Shows About Us Content*/
-	register_sidebar(array( 
-		'name' => 'Home: Halfway',	
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<!--',
-		'after_title' => '-->',  
-	));
-
-
-/* Home Page  horizontal sidebar 3: Shows About Us Content*/
-	register_sidebar(array( 
-		'name' => 'Home: Bottom',	
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<!--',
-		'after_title' => '-->',  
-	));	
+		
 
 
 
@@ -273,6 +247,23 @@ if ( function_exists('register_sidebar') ){
 	/* About Us Page  horizontal sidebar 4: Shows About Us Content*/
 	register_sidebar(array( 
 		'name' => 'About Us: Bottom 2 Content',	
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<!--',
+		'after_title' => '-->',  
+	));
+/* Home Page  horizontal sidebar 1: Shows About Us Content*/
+	register_sidebar(array( 
+		'name' => 'Home: Spotlight',	
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<!--',
+		'after_title' => '-->',  
+	));
+
+/* HomE Page  horizontal sidebar 2: Shows About Us Content*/
+	register_sidebar(array( 
+		'name' => 'Home: Halfway',	
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<!--',
