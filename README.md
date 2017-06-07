@@ -1,7 +1,7 @@
 Barcoding Wordpress Theme
 ===
 
-This are the files for the Barcoding Wordpress Theme
+This are the files for the Barcoding Wordpress Theme.
 This theme is approximately 80% customizable. That includes posts, images and most of the content.
 The pages, mostly structured by widgets allow easy editing and personalization through the wordpress admin panel.
 The Widgets although created for specific pages can be used through out the whole theme.
